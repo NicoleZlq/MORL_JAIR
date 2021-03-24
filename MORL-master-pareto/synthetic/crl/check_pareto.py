@@ -87,7 +87,3 @@ class Pareto(object):
 
 
 
-    def dominates(row, rowCandidate):
-        return all(r >= rc for r, rc in zip(row, rowCandidate))
-
-

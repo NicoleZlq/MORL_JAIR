@@ -101,7 +101,9 @@ def train(env, agent, args):
         epoch_time = float(end-start)
 
         if num_eps >= 200 and num_eps % 250 == 0:
-            monitor.show_sample_Q(sample_q)
+            monitor.show_sample_Q(sample_q)   #print Q position
+
+
 
 
         _, q = agent.predict(probe)

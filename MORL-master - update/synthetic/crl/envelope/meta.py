@@ -1,5 +1,4 @@
 from __future__ import absolute_import, division, print_function
-import random
 import torch
 import copy
 import numpy as np
@@ -9,12 +8,18 @@ import torch.nn.functional as F
 from collections import namedtuple
 from collections import deque
 import time
+import sys
+
+sys.path.append('E:\\UMstudy\\python\\RL\\MORL-master\\MORL-master - update\\synthetic\\crl')
+
+from check_pareto import Pareto
 
 use_cuda = torch.cuda.is_available()
 FloatTensor = torch.cuda.FloatTensor if use_cuda else torch.FloatTensor
 LongTensor = torch.cuda.LongTensor if use_cuda else torch.LongTensor
 ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
 Tensor = FloatTensor
+Pareto = Pareto()
 
 
 class MetaAgent(object):
@@ -193,6 +198,8 @@ class MetaAgent(object):
             __, Q = self.model_(Variable(torch.cat(state_batch, dim=0)),
                                 Variable(w_batch), w_num=self.weight_num)
 
+
+
             # detach since we don't want gradients to propagate
             # HQ, _    = self.model_(Variable(torch.cat(next_state_batch, dim=0), volatile=True),
             # 					  Variable(w_batch, volatile=True), w_num=self.weight_num)
@@ -233,6 +240,8 @@ class MetaAgent(object):
 
             wTQ = torch.bmm(Variable(w_batch.unsqueeze(1)),
                             Tau_Q.unsqueeze(2)).squeeze()
+
+            Pareto.get_pareto_frontier(Q)  # find the pareto point
 
             # loss = F.mse_loss(Q.view(-1), Tau_Q.view(-1))
             loss = self.beta * F.mse_loss(wQ.view(-1), wTQ.view(-1))
