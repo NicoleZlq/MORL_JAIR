@@ -1,0 +1,22 @@
+program: /home/MORL/MORL-TD/envelope_minecart.py
+method: bayes
+project: MORL-Baselines
+metric:
+  goal: maximize
+  name: eval/recall
+parameters:
+
+
+  batch_size:
+    distribution: categorical
+    values: [16,32,64,128]
+  target_net_update_freq:
+    distribution: categorical
+    values: [200,800,500,1000]
+  learning_rate:
+    distribution: categorical
+    values: [3e-4,1e-4,5e-4]
+  gradient_updates:
+    distribution: categorical
+    values: [1,10,5]
+  

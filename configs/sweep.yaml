@@ -1,0 +1,11 @@
+program: /home/MORL-TD/gpi_pd_hopper.py
+project: MORL-Baselines
+method: random
+metric:
+  goal: maximize
+  name: eval/hypervolume
+parameters:
+
+  seed:
+    distribution: categorical
+    values: [2,3,4,5,6]
