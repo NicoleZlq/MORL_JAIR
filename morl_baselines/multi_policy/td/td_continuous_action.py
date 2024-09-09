@@ -73,7 +73,7 @@ class QNetwork(nn.Module):
         return q_values
 
 
-class GPIPDContinuousAction(MOAgent, MOPolicy):
+class TDContinuousAction(MOAgent, MOPolicy):
     """GPI-PD algorithm with continuous actions.
 
     Sample-Efficient Multi-Objective Learning via Generalized Policy Improvement Prioritization

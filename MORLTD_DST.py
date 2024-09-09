@@ -2,7 +2,7 @@ import fire
 import mo_gymnasium as mo_gym
 import numpy as np
 from mo_gymnasium.utils import MORecordEpisodeStatistics
-from morl_baselines.multi_policy.gpi_pd.gpi_pd import GPIPD
+from morl_baselines.multi_policy.td.td import morl_td
 import os
 import wandb
 
@@ -21,7 +21,7 @@ def main( ):
     eval_env = mo_gym.make("deep-sea-treasure-concave-v0")
 
 
-    agent = GPIPD(
+    agent = morl_td(
         env,
         num_nets=2,
         max_grad_norm=None,

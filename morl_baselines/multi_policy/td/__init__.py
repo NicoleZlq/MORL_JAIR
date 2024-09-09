@@ -1,1 +1,1 @@
-"""Envelope Q-Learning (EQL) implementation."""
+"""GPI-Prioritized Dyna."""

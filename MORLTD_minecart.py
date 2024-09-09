@@ -2,7 +2,7 @@ import fire
 import mo_gymnasium as mo_gym
 import numpy as np
 
-from morl_baselines.multi_policy.gpi_pd.gpi_pd import GPIPD
+from morl_baselines.multi_policy.td.td import morl_td
 
 
 # from gymnasium.wrappers.record_video import RecordVideo
@@ -17,7 +17,7 @@ def main( ):
     env = make_env()
     eval_env = make_env()  # RecordVideo(make_env(), "videos/minecart/", episode_trigger=lambda e: e % 1000 == 0)
 
-    agent = GPIPD(
+    agent = morl_td(
         env,
         num_nets=2,
         max_grad_norm=None,

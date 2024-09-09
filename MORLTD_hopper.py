@@ -2,8 +2,8 @@ import fire
 import mo_gymnasium as mo_gym
 import numpy as np
 
-from morl_baselines.multi_policy.gpi_pd.gpi_pd_continuous_action import (
-    GPIPDContinuousAction,
+from morl_baselines.multi_policy.td.td_continuous_action import (
+    TDContinuousAction,
 )
 
 
@@ -21,7 +21,7 @@ def main():
     env = make_env(record_episode_statistics=True)
     eval_env = make_env()  
 
-    agent = GPIPDContinuousAction(
+    agent = TDContinuousAction(
         env,
         gradient_updates= 1000,
         min_priority=0.1,
